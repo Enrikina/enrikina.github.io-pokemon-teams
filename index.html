@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Teambuilder</title>
+  <style>
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .square {
+      width: 80px;
+      height: 80px;
+      border-radius: 0px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: black;
+      background-color: lightgray; /* default color */
+    }
+
+    .bar {
+      width: 10px;
+      height: 80px;
+      border-radius: 0px;
+      background-color: rgb(0, 0, 0); /* default color */
+    }
+  </style>
+
 </head>
 <body>
     <header>
@@ -11,12 +36,52 @@
         <p>Hit a button to add a game.</p>
     </header>
 
+  <script>
+    function addRow(color, button) {
+    // Remove the button that was clicked
+    button.remove();
+
+      const container = document.getElementById('teams_section');
+
+      // Create a new row.
+      const row = document.createElement('div');
+      row.classList.add('row');
+
+      const square = document.createElement('div');
+      square.classList.add('square');
+      row.appendChild(square);
+      square.style.backgroundColor = color;
+
+      const bar = document.createElement('div');
+      bar.classList.add('bar');
+      row.appendChild(bar);    
+
+      for (let i = 0; i < 6; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        row.appendChild(square);
+        square.style.backgroundColor = color;
+      }
+
+      container.appendChild(row);
+    }
+  </script>
+
     <main>
-            <section>
-                <button type="button">Red</button>
-                <button type="button">Blue</button>
-                <button type="button">Green</button>
-                <button type="button">Yellow</button>
+            <section id="gen1_button_section" style="margin-bottom: 10px;">
+                <button onclick="addRow('#DA3914', this)">Red</button>
+                <button onclick="addRow('#2E50D8', this)">Blue</button>
+                <button onclick="addRow('#24A724', this)">Green</button>
+                <button onclick="addRow('#FFD733', this)">Yellow</button>
+            </section>
+            <section id="gen2_button_section" style="margin-bottom: 20px;">
+                <button onclick="addRow('#DAA520', this)">Gold</button>
+                <button onclick="addRow('#C0C0C0', this)">Silver</button>
+                <button onclick="addRow('#4FD9FF', this)">Crystal</button>
+            </section>
+
+            <section id="teams_section">
+
             </section>
     </main>
 
